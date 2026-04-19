@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo_sentinel_pixelart.jpg" alt="Shadow Sentinel" width="720" />
+</p>
+
 # Shadow Sentinel Skills
 
 Open-source skills that turn an agent harness into a practical Agent OS.
