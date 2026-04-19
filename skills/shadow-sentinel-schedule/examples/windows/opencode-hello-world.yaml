@@ -1,0 +1,36 @@
+id: opencode-hello-world
+title: OpenCode Hello World
+enabled: true
+
+schedule:
+  kind: interval
+  every: "5m"
+  timezone: local
+  backend_expression:
+    platform: windows
+    scheduler: powershell-scheduledtasks
+    repetition_interval: PT5M
+    repetition_duration: P3650D
+
+command:
+  program: opencode
+  args:
+    - run
+    - --format
+    - json
+    - 'You are running as a scheduled test job. Do not modify files, do not apply changes, do not use git, do not access GitHub, do not create side effects outside normal stdout/stderr. Return exactly this final text and nothing else: Hello, world from OpenCode scheduled job.'
+  working_directory: 'C:/path/to/your/project'
+
+output:
+  stdout_path: '%USERPROFILE%/.shadow_sentinel/output/opencode-hello-world.stdout.txt'
+  stderr_path: '%USERPROFILE%/.shadow_sentinel/logs/opencode-hello-world.stderr.txt'
+  raw_stdout_path: '%USERPROFILE%/.shadow_sentinel/output/opencode-hello-world.raw.jsonl'
+  raw_stderr_path: '%USERPROFILE%/.shadow_sentinel/logs/opencode-hello-world.raw.stderr.txt'
+
+runtime:
+  os_backend: windows-task-scheduler
+  preferred_backend: powershell-scheduledtasks
+  materialized_backend: powershell-scheduledtasks
+  task_name: opencode-hello-world
+  registration_script: '%USERPROFILE%/.shadow_sentinel/skills/generated/register-opencode-hello-world.ps1'
+  final_command: 'powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File "%USERPROFILE%/.shadow_sentinel/skills/generated/opencode-hello-world.ps1"'

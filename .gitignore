@@ -1,0 +1,34 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Python / Node misc
+node_modules/
+dist/
+build/
+
+# Local runtime or install artifacts should never live in this repo
+.shadow_sentinel/
+.idea-memory/
+
+# Generated or private reports should stay out unless explicitly curated
+docs/reports/*.private.md
+docs/reports/*.local.md
+
+# Local test outputs
+tmp/
+temp/
+*.log
+*.tmp
+
+# Env / secrets
+.env
+.env.*
+*.secret
+*.secrets
+*.key
+*.pem
+*.pfx
+*.p12
